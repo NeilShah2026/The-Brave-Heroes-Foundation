@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brave Heroes Foundation - Christmas Gift Catalog</title>
+    <style>
+        :root {
+            --primary-color: #0070f3;
+            --secondary-color: #ffd700;
+            --background-color: #f8f8f8;
+            --card-background: #ffffff;
+            --text-color: #333333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .filter-dropdown select {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        .catalog {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        .item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+        }
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .item-content {
+            padding: 1rem;
+        }
+        .item-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .item-category {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .donate-button {
+            display: block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .donate-button:hover {
+            background-color: #e6c200;
+        }
+        .location-info {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .location-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .map-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .map-button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .search-filter {
+                flex-direction: column;
+            }
+            .search-bar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Brave Heroes Foundation</h1>
+        <p>Christmas Gift Catalog for Kids with Cancer</p>
+    </header>
+    <div class="container">
+        <h2>Choose a Gift to Donate</h2>
+        <div class="search-filter">
+            <div class="search-bar">
+                <input type="text" id="search" placeholder="Search for gifts...">
+            </div>
+            <div class="filter-dropdown">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="infants-toddlers">Infants/Toddlers</option>
+                    <option value="school-aged">School Aged</option>
+                    <option value="teenagers">Teenagers</option>
+                    <option value="caregivers">Caregivers</option>
+                </select>
+            </div>
+        </div>
+        <div class="catalog" id="gift-catalog">
+            <!-- Gift items will be dynamically inserted here -->
+        </div>
+
+    </div>
+
+    <script>
+        const giftItems = [
+            { name: "Teethers/Pacifiers", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71hLZkxNt5L.jpg?height=200&width=200" },
+            { name: "Blanket", category: "infants-toddlers", image: "https://lizandroo.com/cdn/shop/products/blush-watercolor-floral-baby-blanket-with-petal-pink-ruffle-802479.jpg?v=1656023510?height=200&width=200" },
+            { name: "Cup Stacker Toy", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71Y+--pHSmL.jpg?height=200&width=200" },
+            { name: "Shape Sorter", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71m8kLWbVpL.jpg?height=200&width=200" },
+            { name: "Tummy Time Mat", category: "infants-toddlers", image: "https://www.kids2.com/cdn/shop/files/dgpui3oklqa8mxijlzqb_2048x.jpg?v=1701887252?height=200&width=200" },
+            { name: "Light Up/Sound Toys", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71LO1hsCbML.jpg?height=200&width=200" },
+            { name: "Sensory Books", category: "infants-toddlers", image: "https://www.manhattantoy.com/cdn/shop/products/y7pnitzuudedwiwbtkaw.jpg?v=1710168242&width=1080?height=200&width=200" },
+            { name: "Bath Toys", category: "infants-toddlers", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhKNFBwSQZXzNQR1acuDttjdwyZwrxx-_h8Q&s?height=200&width=200" },
+            { name: "Kids Selfe Camera", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/61eeeVyEGVL.jpg?height=200&width=200" },
+            { name: "Cars/Trucks/Trains", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/81OLqPX0QyL.jpg?height=200&width=200" },
+            { name: "Kitchen/Tool/Register", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71rMARfAS4L.jpg?height=200&width=200" },
+
+            { name: "LEGO Duplo Set", category: "school-aged", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Art Supply Kit", category: "school-aged", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Science Experiment Kit", category: "school-aged", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Wireless Headphones", category: "teenagers", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Graphic Novel Set", category: "teenagers", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Portable Charger", category: "teenagers", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Cozy Throw Blanket", category: "caregivers", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Aromatherapy Diffuser", category: "caregivers", image: "/placeholder.svg?height=200&width=200" },
+            { name: "Gourmet Tea Set", category: "caregivers", image: "/placeholder.svg?height=200&width=200" },
+        ];
+
+        function renderCatalog(items) {
+            const catalog = document.getElementById('gift-catalog');
+            catalog.innerHTML = '';
+            items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-content">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-category">${item.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
+                    </div>
+                `;
+                catalog.appendChild(itemElement);
+            });
+        }
+
+        function filterItems() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const category = document.getElementById('category-filter').value;
+            const filteredItems = giftItems.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === 'all' || item.category === category;
+                return matchesSearch && matchesCategory;
+            });
+            renderCatalog(filteredItems);
+        }
+
+        document.getElementById('search').addEventListener('input', filterItems);
+        document.getElementById('category-filter').addEventListener('change', filterItems);
+
+        // Initial render
+        renderCatalog(giftItems);
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>2024 Gift Drive</title>
+<title>2023 Gift Drive</title>
 <!-- Stylesheets -->
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 
@@ -23,13 +23,161 @@
 
 <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
 <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<style>
+        :root {
+            --primary-color: #fc7d33;
+            --secondary-color: #fc7d33;
+            --background-color: #f8f8f8;
+            --card-background: #ffffff;
+            --text-color: #333333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: var(--primary-color);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-button {
+            background-color: var(--card-background);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        .filter-button:hover, .filter-button.active {
+            background-color: var(--primary-color);
+            color: var(--card-background);
+        }
+        .catalog {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .category {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .category-header {
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .category-content {
+            padding: 15px;
+        }
+        .gift-grid {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+        .gift-item {
+            background-color: var(--background-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .donate-button {
+            display: block;
+            background-color: var(--secondary-color);
+            color: var(--card-background);
+            text-align: center;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .donate-button:hover {
+            background-color: #ffffff;
+        }
+        .location-info {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .location-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .location-info p {
+            margin-bottom: 15px;
+        }
+        .map-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .map-button:hover {
+            background-color: #fc7d33;
+        }
+        @media (max-width: 600px) {
+            .filter-button {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            .gift-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gift-item {
+                font-size: 0.8em;
+            }
+        }
+    </style>
 </head>
 
 <body class="hidden-bar-wrapper">
@@ -41,7 +189,7 @@
 		<!-- End Preloader -->
 		 
 		 <!-- Main Header / Header Style Four -->
-		<header class="main-header header-style-four">
+		 <header class="main-header header-style-four">
 			<!-- Header Top -->
 			<div class="header-top">
 				<div class="auto-container clearfix">
@@ -49,7 +197,7 @@
 					<div class="pull-left">
 						<ul class="info">
 							<!--<li><a href="tel:+88-016848651"><span class="icon flaticon-telephone"></span>+88 016848651</a></li>-->
-							<li><a href="mailto:hello@heroes-project.org"><span class="icon flaticon-email"></span>hello@thebraveheroes.org</a></li>
+							<li><a href="mailto:hello@thebraveheroes.org"><span class="icon flaticon-email"></span>hello@thebraveheroes.org</a></li>
 						</ul>
 					</div>
 					<div class="pull-right clearfix">
@@ -74,7 +222,7 @@
 					<div class="inner-container clearfix">
 						<!-- Logo Box -->
 						<div class="pull-left logo-box">
-							<div class="logo"><a href="../index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+							<div class="logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
 						</div>
 						
 						<!-- Nav Outer -->
@@ -116,7 +264,7 @@
 												</li>
 											</ul>
 										</li>-->
-										<li><a href="../about.html">About us</a></li>
+										<li><a href="about.html">About us</a></li>
 										<!--<li class="dropdown"><a href="#">About</a>
 												<li><a href="about.html">About us</a></li>
 							
@@ -162,11 +310,11 @@
 												<li><a href="not-found.html">Not Found</a></li>
 											</ul>
 										</li>-->
-										<li><a href="../events.html">Events</a></li>
-										<li><a href="../volunter.html">Volunteer</a></li>
-										<li><a href="../find-a-hero.html">Find A Hero</a></li>
+										<li><a href="events.html">Events</a></li>
+										<li><a href="volunter.html">Join Us</a></li>
+										<li><a href="find-a-hero.html">Hero Program</a></li>
 										<li><a href="team.html">Team</a></li>
-										<li><a href="../contact.html">Contact</a></li>
+										<li><a href="contact.html">Contact</a></li>
 									</ul>
 								</div>
 								
@@ -177,7 +325,7 @@
 								
 								<!-- Button Box -->
 								<div class="button-box">
-									<a href="https://givebutter.com/heroes-project" class="theme-btn donate-shape-btn custom-dbox-popup"><span class="txt">Donations</span></a>
+									<a href="https://givebutter.com/heroes-project" class="theme-btn donate-shape-btn"><span class="txt">Donations</span></a>
 								</div>
 								<!-- End Button Box -->
 								
@@ -193,7 +341,7 @@
 				<div class="auto-container clearfix">
 					<!-- Logo -->
 					<div class="logo pull-left">
-						<a href="../index.html" title=""><img src="assets/images/logo-small.png" alt="" title=""></a>
+						<a href="index.html" title=""><img src="assets/images/logo-small.png" alt="" title=""></a>
 					</div> 
 					<!--Right Col-->
 					<div class="pull-right">
@@ -228,7 +376,7 @@
 	<!-- Page Title -->
     <section class="page-title" style="background-image: url(assets/images/background/6.jpg)">
         <div class="auto-container">
-			<h1>2023 Gift Drive</h1>
+			<h1>2024 Gift Drive</h1>
 			<ul class="bread-crumb clearfix">
 				<li><a href="../index.html">Home</a></li>
 				<li>Events</li>
@@ -242,7 +390,7 @@
 		<div class="auto-container">
 			<div class="image">
 				<img src="assets/events-images/2023-drive-cover.png" alt="" />
-				<div class="post-date">Holidays 2023</div>
+				<div class="post-date">Holidays 2024</div>
 			</div>
 			<div class="lower-content">
 				<div class="row clearfix">
@@ -256,10 +404,10 @@
 							</div>
 							<div class="widget-content">
 								<ul class="event-info-list">
-									<li>Ending Date :<span>December 25</span></li>
-									<li>Contact :<span>hello@heroes-project.org</span></li>
-									<li>Location :<span>Online</span></li>
-									<li>Organizer :<span>The Heroes Project & Dana Farber</span></li>
+									<li>Ending Date :<span>December 20</span></li>
+									<li>Contact :<span>hello@thebraveheroes.org</span></li>
+									<li>Location :<span>Drive</span></li>
+									<li>Organizer :<span>TBHF & Ronald McDonald</span></li>
 								</ul>
 							</div>
 						</div>
@@ -267,9 +415,9 @@
 						<!-- Donate Widget -->
 						<div class="sidebar-widget donate-widget">
 							<div class="widget-content">
-								<h3>Heroes Project <br> Holiday Gift Drive</h3>
+								<h3>The Brave Heroes <br> Holiday Gift Wish List</h3>
 							</br>
-								<a href="https://www.amazon.com/hz/wishlist/ls/283T3PS9TSQET?ref_=abls_nvfly_swy" class="theme-btn donate-btn">Buy A Gift!</a>
+								<a href="https://thebraveheroes.org/catalog" class="theme-btn donate-btn">Gift Catalog</a>
 							</div>
 						</div>
 						
@@ -291,16 +439,17 @@
 					</div>
 					<!-- Right Column -->
 					<div class="right-column col-lg-8 col-md-12 col-sm-12">
-						<h2>2023 Holidays Gift Drive</h2>
-						<p>Join The Heroes Project in our mission to gift a spark of joy to children battling cancer this holiday season. Your kind donations can make a world of difference, lighting up their faces and spirits. Together, we can stand with these brave young souls, offering them a token of love, hope, and support during challenging times. Let's rally as a community and make this festive season a memorable one for these fighters.</p>
-						<h3>Event Mission</h3>
-						<p>Our mission with this event is to rally together as a community, bridging compassion with action, to bring a touch of festive joy and unwavering support to children battling cancer. Through our collective efforts, we aim to remind these young heroes that they are not alone in their fight and that their strength inspires us every day.</p>
-						<h3>How to Donate</h3>
-						<p> To make your donation, please use the Dana Farber Amazon gift link provided below. This link allows you to conveniently select and donate new, unwrapped gifts suitable for children of all ages. From engaging toys and activity kits to books, art supplies, and cozy blankets, each gift you choose will carry a message of love and hope directly to these courageous young souls.</p>
-						<p>When you pick a gift from the list, just pop it in your cart and choose 'Lisa Scherber’s Gift Address' at checkout. Don’t forget to sprinkle in some extra joy by mentioning 'The Heroes Project' in your gift message!</p>
-						<ul class="list">
-							<li><a href="https://www.amazon.com/hz/wishlist/ls/283T3PS9TSQET?ref_=abls_nvfly_swy">Dana Farber Wish List</a>a</li>
-						</ul>
+						<h1>2024 Holidays Gift Drive</h1>
+						<p>Join The Brave Heroes Foundation in our mission to spread holiday cheer to children bravely battling cancer. This year, we’re partnering with Ronald McDonald House in Boston to bring joy and warmth to these young fighters. Your generous donations will brighten their spirits, offering them love and hope during this festive season.</p>
+
+<h3>Event Mission</h3>
+<p>Together as a community, we’re creating meaningful moments for children and families facing challenging times. By joining forces, we remind these young heroes they’re never alone, and that their courage inspires us all.</p>
+
+<h3>How to Donate</h3>
+<p>To make a donation, explore the Ronald McDonald <a href="https://thebraveheroes.org/catalog">gift catalog</a>. The catalog includes items specifically requested, but feel free to choose other thoughtful gifts! You can either purchase items through the catalog or bring gifts in person to a location (TBD).</p>
+
+<p>Thank you for helping us make this holiday season unforgettable for these incredible kids!</p>
+						
 						
 						<!-- <div class="button-box">
 							<a class="btn-style-one theme-btn" href="contact.html"><span class="txt">REGISTER</span></a>
@@ -310,6 +459,8 @@
 				</div>
 			</div>
 		</div>
+		
+
 	</section>
 	<!-- End Project Detail Section -->
 	
