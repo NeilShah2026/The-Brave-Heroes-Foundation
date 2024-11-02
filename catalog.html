@@ -7,8 +7,8 @@
     <style>
         :root {
             --primary-color: #0070f3;
-            --secondary-color: #ffd700;
-            --background-color: #f8f8f8;
+            --secondary-color: #ff6b6b;
+            --background-color: #f0f9ff;
             --card-background: #ffffff;
             --text-color: #333333;
         }
@@ -29,378 +29,327 @@
             padding: 20px;
         }
         header {
-            background-color: var(--primary-color);
-            color: white;
             text-align: center;
-            padding: 2rem 0;
             margin-bottom: 2rem;
         }
         h1 {
             font-size: 2.5em;
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
         h2 {
             font-size: 1.8em;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 1rem;
         }
         .search-filter {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 2rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .search-bar {
+        .search-filter input,
+        .search-filter select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             flex-grow: 1;
-            margin-right: 1rem;
         }
-        .search-bar input {
-            width: 100%;
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-        .filter-dropdown select {
-            padding: 0.5rem;
-            font-size: 1rem;
+        .search-filter input:focus,
+        .search-filter select:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
         .catalog {
             display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
-        .item {
+        .card {
             background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
-        .item:hover {
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
         }
-        .item-image {
+        .card-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        .item-content {
+        .card-content {
             padding: 1rem;
         }
-        .item-name {
-            font-weight: bold;
+        .card-title {
+            font-size: 1.2em;
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        .item-category {
-            font-size: 0.8em;
+        .card-category {
+            font-size: 0.9em;
             color: #666;
             margin-bottom: 0.5rem;
         }
+        .card-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
         .donate-button {
             display: block;
+            width: 100%;
+            padding: 0.8rem;
             background-color: var(--secondary-color);
-            color: var(--text-color);
+            color: white;
             text-align: center;
-            padding: 0.5rem;
-            border-radius: 5px;
             text-decoration: none;
-            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .donate-button:hover {
-            background-color: #e6c200;
+            background-color: #ff5252;
         }
-        .location-info {
-            background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        footer {
+            margin-top: 3rem;
+            background-color: white;
+            border-radius: 8px;
             padding: 2rem;
-            margin-top: 2rem;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .location-info h3 {
+        footer h3 {
+            font-size: 1.5em;
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
-        .map-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
+        footer p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-button {
             padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .map-button:hover {
+        .primary-button {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .primary-button:hover {
             background-color: #0056b3;
         }
-        @media (max-width: 600px) {
-            .search-filter {
-                flex-direction: column;
-            }
-            .search-bar {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
+        .secondary-button {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        .secondary-button:hover {
+            background-color: #f0f0f0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .location {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+        .location h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .instructions {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.1em;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>The Brave Heroes Foundation</h1>
-        <p>Christmas Gift Catalog for Kids with Cancer | Ronald McDonald</p>
-    </header>
     <div class="container">
-        <h2>Choose a Gift to Donate</h2>
+        <header>
+            <h1>The Brave Heroes Foundation</h1>
+            <h2>Christmas Gift Catalog</h2>
+            <p class="subtitle">Help bring joy to kids fighting cancer this holiday season!</p>
+            <div class="instructions">
+                <p>You can buy gifts directly from this page using the "Donate Item" button, or purchase one yourself (it doesn’t have to be the exact item or even on the list) and bring it to a donation location.</p>
+            </br>
+                <button id="donate-online" class="footer-button primary-button">Donate Online</button>
+                <button id="view-locations" class="footer-button secondary-button">View Drop-off Locations</button>
+            </div>
+        </header>
+
         <div class="search-filter">
-            <div class="search-bar">
-                <input type="text" id="search" placeholder="Search for gifts...">
-            </div>
-            <div class="filter-dropdown">
-                <select id="category-filter">
-                    <option value="all">All Categories</option>
-                    <option value="infants-toddlers">Infants/Toddlers</option>
-                    <option value="school-aged">School Aged</option>
-                    <option value="teenagers">Teenagers</option>
-                    <option value="caregivers">Caregivers</option>
-                </select>
-            </div>
+            <input type="text" id="search" placeholder="Search gifts...">
+            <select id="category-filter">
+                <option value="all">All Categories</option>
+                <option value="infants-toddlers">Infants/Toddlers</option>
+                <option value="school-aged">School Aged</option>
+                <option value="teenagers">Teenagers</option>
+                <option value="caregivers">Caregivers</option>
+            </select>
         </div>
-        <div class="catalog" id="gift-catalog">
+
+        <div id="catalog" class="catalog">
             <!-- Gift items will be dynamically inserted here -->
         </div>
 
+        <footer>
+            <h3>How to Donate</h3>
+            <p>You can either donate through our website or drop off gifts at one of our locations.</p>
+            <div class="footer-buttons">
+                <button id="donate-online" class="footer-button primary-button">Donate Online</button>
+                <button id="view-locations" class="footer-button secondary-button">View Drop-off Locations</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="locations-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Gift Drop-off Locations</h3>
+            <div id="locations-list">
+                <!-- Locations will be dynamically inserted here -->
+            </div>
+        </div>
     </div>
 
     <script>
         const giftItems = [
-            { name: "Teethers/Pacifiers", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71hLZkxNt5L.jpg?height=200&width=200" },
-            { name: "Blanket", category: "infants-toddlers", image: "https://lizandroo.com/cdn/shop/products/blush-watercolor-floral-baby-blanket-with-petal-pink-ruffle-802479.jpg?v=1656023510?height=200&width=200" },
-            { name: "Cup Stacker Toy", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71Y+--pHSmL.jpg?height=200&width=200" },
-            { name: "Shape Sorter", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71m8kLWbVpL.jpg?height=200&width=200" },
-            { name: "Tummy Time Mat", category: "infants-toddlers", image: "https://www.kids2.com/cdn/shop/files/dgpui3oklqa8mxijlzqb_2048x.jpg?v=1701887252?height=200&width=200" },
-            { name: "Light Up/Sound Toys", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71LO1hsCbML.jpg?height=200&width=200" },
-            { name: "Sensory Books", category: "infants-toddlers", image: "https://www.manhattantoy.com/cdn/shop/products/y7pnitzuudedwiwbtkaw.jpg?v=1710168242&width=1080?height=200&width=200" },
-            { name: "Bath Toys", category: "infants-toddlers", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhKNFBwSQZXzNQR1acuDttjdwyZwrxx-_h8Q&s?height=200&width=200" },
-            { name: "Kids Selfe Camera", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/61eeeVyEGVL.jpg?height=200&width=200" },
-            { name: "Cars/Trucks/Trains", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/81OLqPX0QyL.jpg?height=200&width=200" },
-            { name: "Kitchen/Tool/Register", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71rMARfAS4L.jpg?height=200&width=200" },
+            { name: "Teethers/Pacifiers", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71hLZkxNt5L.jpg?height=200&width=200", price: 15.99 },
+            { name: "Blanket", category: "infants-toddlers", image: "https://lizandroo.com/cdn/shop/products/blush-watercolor-floral-baby-blanket-with-petal-pink-ruffle-802479.jpg?v=1656023510?height=200&width=200", price: 24.99 },
+            { name: "Cup Stacker Toy", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71Y+--pHSmL.jpg?height=200&width=200", price: 12.99 },
+            { name: "Shape Sorter", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71m8kLWbVpL.jpg?height=200&width=200", price: 18.99 },
+            { name: "Tummy Time Mat", category: "infants-toddlers", image: "https://www.kids2.com/cdn/shop/files/dgpui3oklqa8mxijlzqb_2048x.jpg?v=1701887252?height=200&width=200", price: 29.99 },
+            { name: "Light Up/Sound Toys", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71LO1hsCbML.jpg?height=200&width=200", price: 22.99 },
+            { name: "Sensory Books", category: "infants-toddlers", image: "https://www.manhattantoy.com/cdn/shop/products/y7pnitzuudedwiwbtkaw.jpg?v=1710168242&width=1080?height=200&width=200", price: 19.99 },
+            { name: "Bath Toys", category: "infants-toddlers", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhKNFBwSQZXzNQR1acuDttjdwyZwrxx-_h8Q&s?height=200&width=200", price: 14.99 },
+            { name: "Kids Selfie Camera", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/61eeeVyEGVL.jpg?height=200&width=200", price: 39.99 },
+            { name: "Cars/Trucks/Trains", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/81OLqPX0QyL.jpg?height=200&width=200", price: 27.99 },
+            { name: "Kitchen/Tool/Register", category: "infants-toddlers", image: "https://m.media-amazon.com/images/I/71rMARfAS4L.jpg?height=200&width=200", price: 34.99 },
+            { name: "Magnatiles", category: "school-aged", image: "https://northwestnatureshop.com/wp-content/uploads/2015/06/magnatiles-1.jpg?height=200&width=200", price: 49.99 },
+            { name: "Legos", category: "school-aged", image: "https://www.lego.com/cdn/cs/set/assets/blt8fa82af2949ffc86/31139.png?height=200&width=200", price: 59.99 },
+            { name: "Art Sets", category: "school-aged", image: "https://m.media-amazon.com/images/I/718SjzV5q9L.jpg?height=200&width=200", price: 29.99 },
+            { name: "Slime", category: "school-aged", image: "https://m.media-amazon.com/images/I/81p3qUJsw+L.jpg?height=200&width=200", price: 12.99 },
+            { name: "Painting", category: "school-aged", image: "https://m.media-amazon.com/images/I/71ZpgKMcSuL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 24.99 },
+            { name: "Clay", category: "school-aged", image: "https://m.media-amazon.com/images/I/71SbEARUibL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 19.99 },
+            { name: "Sticker by Number", category: "school-aged", image: "https://images.booksense.com/images/886/585/9781645585886.jpg?height=200&width=200", price: 9.99 },
+            { name: "Bracelet Making", category: "school-aged", image: "https://mclows.com/cdn/shop/files/1_2c498df5-eaec-4e88-b86d-e0dae9173c2b.png?v=1710194365&width=1445?height=200&width=200", price: 14.99 },
+            { name: "Kinetic Sand", category: "school-aged", image: "https://m.media-amazon.com/images/I/917JcV9CBQL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 17.99 },
+            { name: "Play-Doh", category: "school-aged", image: "https://m.media-amazon.com/images/I/71gHRy76hwL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 9.99 },
+            { name: "Stuffed Animals", category: "school-aged", image:  "https://i5.walmartimages.com/seo/SYNCFUN-24-Pcs-Party-Favors-Kids-3-Mini-Stuffed-Animals-Bulk-Cute-Small-Plush-Toys-Pinata-Fillers-Keychain-Decoration-Boys-Girls-Teacher-Student-Gift_6737a2d3-ccc6-4663-81c7-2357d0f969f7.90c86c2c078192258ac6a0034c89457c.jpeg?height=200&width=200", price: 22.99 },
+            { name: "Squishmallows", category: "school-aged", image: "https://m.media-amazon.com/images/I/61OxHmxrutL.jpg?height=200&width=200", price: 19.99 },
+            { name: "Action Figures", category: "school-aged", image: "https://m.media-amazon.com/images/I/81c0EpLbvXL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 24.99 },
+            { name: "Barbies/Dolls/Figurines/Doll House", category: "school-aged", image: "https://m.media-amazon.com/images/I/71+I3hfh5mL.jpg?height=200&width=200", price: 39.99 },
+            { name: "Board Games", category: "school-aged", image: "https://shop.happyyouhappyfamily.com/wp-content/uploads/2020/08/sequence-letters-2.jpg?height=200&width=200", price: 29.99 },
+            { name: "Books", category: "school-aged", image: "https://www.thebookbundler.com/cdn/shop/products/bulk-books-large-illustrated-hardcover-kids-books-br-ages-4-8-thebookbundler-14674099667038.jpg?v=1684848476&width=1946?height=200&width=200", price: 34.99 },
+            { name: "Cars", category: "school-aged", image: "https://m.media-amazon.com/images/I/71RUfqAY5XL.jpg?height=200&width=200", price: 17.99 },
+            { name: "First Keyboard", category: "school-aged", image: "https://cdn11.bigcommerce.com/s-5kcaxd50lw/images/stencil/1280x1280/products/24499/6739739/1e0a9554ce427553a2d092d612dc3cea945e00a189e2653b0faf32dfe74a09d2__20024.1664758932.jpg?c=2?imbypass=on?height=200&width=200", price: 49.99 },
+            { name: "First Drum Set", category: "school-aged", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpLzZ_x3U4muLSVWivcGQByPzJHa6kLH_pkg&s?height=200&width=200", price: 59.99 },
+            { name: "Fidgets/Sensory Toys", category: "school-aged", image: "https://m.media-amazon.com/images/I/81wuG3pE67L.jpg?height=200&width=200", price: 14.99 },
+            { name: "Puzzles", category: "school-aged", image: "https://quokka.com/cdn/shop/files/1-min_56171f91-10f0-430c-8aa1-d90c2d9714ac.png?v=1720426722&width=2048?height=200&width=200", price: 19.99 },
+            { name: "Nerf Blaster", category: "school-aged", image: "https://m.media-amazon.com/images/I/71vwM-lXC+L._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 29.99 },
+            { name: "Water Bottle/Tumblers", category: "teenagers", image: "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2024-01/water-bottle-stanley-mc-240109-690daa.jpg?height=200&width=200", price: 34.99 },
+            { name: "Journal/Planners", category: "teenagers", image: "https://m.media-amazon.com/images/I/71zCUqiKhiL.jpg?height=200&width=200", price: 19.99 },
+            { name: "Art Sets", category: "teenagers", image: "https://m.media-amazon.com/images/I/81wIeeEmzJL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 39.99 },
+            { name: "Books", category: "teenagers", image: "https://assets.teenvogue.com/photos/639b955f10adb65c7cd5cb16/1:1/w_1600%2Cc_limit/south%2520asian%2520books.jpg?height=200&width=200", price: 29.99 },
+            { name: "Beauty Products/Nails/Self Care", category: "teenagers", image: "https://umbelorganics.com/wp-content/uploads/2021/10/Teen-Clean-Makeup-Skincare-Gifts-667-umbelorganics.png?height=200&width=200", price: 44.99 },
+            { name: "Legos – Difficult", category: "teenagers", image: "https://m.media-amazon.com/images/I/81-tHOXd5eL.jpg?height=200&width=200", price: 79.99 },
+            { name: "Games", category: "teenagers", image: "https://assets.teenvogue.com/photos/66280a5e11e2542b8ab81648/4:3/w_2664,h_1998,c_limit/TEVOG_4.23_Teen-Vogue-x-Best-Board-Games-for-Teens.jpg?height=200&width=200", price: 39.99 },
+            { name: "Video Games/Related Merchandise", category: "teenagers", image: "https://hips.hearstapps.com/hmg-prod/images/most-popular-video-games-of-2022-1642612227.png?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*?height=200&width=200", price: 59.99 },
+            { name: "Cozy Blanket", category: "caregivers", image: "https://m.media-amazon.com/images/I/71RRFQziKmL.jpg?height=200&width=200", price: 39.99 },
+            { name: "Scented Candles", category: "caregivers", image: "https://candlefy.com/cdn/shop/products/orange-blossom-scented-candle-made-with-natural-coconut-wax-101249.jpg?v=1710035881&width=1214?height=200&width=200", price: 24.99 },
+            { name: "Self-Care Kit", category: "caregivers", image: "https://m.media-amazon.com/images/I/81QFVXoO3eL.jpg?height=200&width=200", price: 49.99 },
+            { name: "Books", category: "caregivers", image: "https://m.media-amazon.com/images/I/91wS5v7tI7L._AC_UF1000,1000_QL80_.jpg?height=200&width=200", price: 29.99 },
+            { name: "Digital Photo Frame", category: "caregivers", image: "https://m.media-amazon.com/images/I/718DGGMbhsL._AC_UF894,1000_QL80_.jpg?height=200&width=200", price: 89.99 },
+            { name: "Gift Card", category: "caregivers", image: "https://usenosh.com/blog/wp-content/uploads/2023/09/62a0b8dc64636e792c929031_Virtual-Gift-Cards-for-Employees-1-fotor-2023091315356.png?height=200&width=200", price: 50.00 },
+            { name: "Tickets", category: "caregivers", image: "https://newenglandmomma.com/wp-content/uploads/2018/08/LEGOLAND-outside.png?height=200&width=200", price: 79.99 },
+            { name: "Travel Mug", category: "caregivers", image: "https://fellowproducts.com/cdn/shop/files/Carter-MoveMug-2in1-Sienna_900x.png?v=1708624407?height=200&width=200", price: 34.99 },
+            { name: "Journal", category: "caregivers", image: "https://i0.wp.com/www.redital.com/wp-content/uploads/2017/05/bullet-journal-example-1024x768.jpg?resize=1024%2C768&ssl=1?height=200&width=200", price: 19.99 }
+        ];
 
-            {
-                "name": "Magnatiles",
-                "category": "school-aged",
-                "image": "https://northwestnatureshop.com/wp-content/uploads/2015/06/magnatiles-1.jpg?height=200&width=200"
-            },
-            {
-                "name": "Legos",
-                "category": "school-aged",
-                "image": "https://www.lego.com/cdn/cs/set/assets/blt8fa82af2949ffc86/31139.png?height=200&width=200"
-            },
-            {
-                "name": "Art Sets",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/718SjzV5q9L.jpg?height=200&width=200"
-            },
-            {
-                "name": "Slime",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/81p3qUJsw+L.jpg?height=200&width=200"
-            },
-            {
-                "name": "Painting",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71ZpgKMcSuL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Clay",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71SbEARUibL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Sticker by Number",
-                "category": "school-aged",
-                "image": "https://images.booksense.com/images/886/585/9781645585886.jpg?height=200&width=200"
-            },
-            {
-                "name": "Bracelet Making",
-                "category": "school-aged",
-                "image": "https://mclows.com/cdn/shop/files/1_2c498df5-eaec-4e88-b86d-e0dae9173c2b.png?v=1710194365&width=1445?height=200&width=200"
-            },
-            {
-                "name": "Kinetic Sand",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/917JcV9CBQL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Play-Doh",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71gHRy76hwL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Stuffed Animals",
-                "category": "school-aged",
-                "image": "https://i5.walmartimages.com/seo/SYNCFUN-24-Pcs-Party-Favors-Kids-3-Mini-Stuffed-Animals-Bulk-Cute-Small-Plush-Toys-Pinata-Fillers-Keychain-Decoration-Boys-Girls-Teacher-Student-Gift_6737a2d3-ccc6-4663-81c7-2357d0f969f7.90c86c2c078192258ac6a0034c89457c.jpeg?height=200&width=200"
-            },
-            {
-                "name": "Squishmallows",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/61OxHmxrutL.jpg?height=200&width=200"
-            },
-            {
-                "name": "Action Figures",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/81c0EpLbvXL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Barbies/Dolls/Figurines/Doll House",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71+I3hfh5mL.jpg?height=200&width=200"
-            },
-
-            {
-                "name": "Board Games",
-                "category": "school-aged",
-                "image": "https://shop.happyyouhappyfamily.com/wp-content/uploads/2020/08/sequence-letters-2.jpg?height=200&width=200"
-            },
-            {
-                "name": "Books",
-                "category": "school-aged",
-                "image": "https://www.thebookbundler.com/cdn/shop/products/bulk-books-large-illustrated-hardcover-kids-books-br-ages-4-8-thebookbundler-14674099667038.jpg?v=1684848476&width=1946?height=200&width=200"
-            },
-            {
-                "name": "Cars",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71RUfqAY5XL.jpg?height=200&width=200"
-            },
-            {
-                "name": "First Keyboard",
-                "category": "school-aged",
-                "image": "https://cdn11.bigcommerce.com/s-5kcaxd50lw/images/stencil/1280x1280/products/24499/6739739/1e0a9554ce427553a2d092d612dc3cea945e00a189e2653b0faf32dfe74a09d2__20024.1664758932.jpg?c=2?imbypass=on?height=200&width=200"
-            },
-            {
-                "name": "First Drum Set",
-                "category": "school-aged",
-                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpLzZ_x3U4muLSVWivcGQByPzJHa6kLH_pkg&s?height=200&width=200"
-            },
-            {
-                "name": "Fidgets/Sensory Toys",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/81wuG3pE67L.jpg?height=200&width=200"
-            },
-            {
-                "name": "Puzzles",
-                "category": "school-aged",
-                "image": "https://quokka.com/cdn/shop/files/1-min_56171f91-10f0-430c-8aa1-d90c2d9714ac.png?v=1720426722&width=2048?height=200&width=200"
-            },
-            {
-                "name": "Nerf Blaster",
-                "category": "school-aged",
-                "image": "https://m.media-amazon.com/images/I/71vwM-lXC+L._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Water Bottle/Tumblers",
-                "category": "teenagers",
-                "image": "https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2024-01/water-bottle-stanley-mc-240109-690daa.jpg?height=200&width=200"
-            },
-            {
-                "name": "Journal/Planners",
-                "category": "teenagers",
-                "image": "https://m.media-amazon.com/images/I/71zCUqiKhiL.jpg?height=200&width=200"
-            },
-            {
-                "name": "Art Sets",
-                "category": "teenagers",
-                "image": "https://m.media-amazon.com/images/I/81wIeeEmzJL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Books",
-                "category": "teenagers",
-                "image": "https://assets.teenvogue.com/photos/639b955f10adb65c7cd5cb16/1:1/w_1600%2Cc_limit/south%2520asian%2520books.jpg?height=200&width=200"
-            },
-            {
-                "name": "Beauty Products/Nails/Self Care",
-                "category": "teenagers",
-                "image": "https://umbelorganics.com/wp-content/uploads/2021/10/Teen-Clean-Makeup-Skincare-Gifts-667-umbelorganics.png?height=200&width=200"
-            },
-            {
-                "name": "Legos – Difficult",
-                "category": "teenagers",
-                "image": "https://m.media-amazon.com/images/I/81-tHOXd5eL.jpg?height=200&width=200"
-            },
-            {
-                "name": "Games",
-                "category": "teenagers",
-                "image": "https://assets.teenvogue.com/photos/66280a5e11e2542b8ab81648/4:3/w_2664,h_1998,c_limit/TEVOG_4.23_Teen-Vogue-x-Best-Board-Games-for-Teens.jpg?height=200&width=200"
-            },
-            {
-                "name": "Video Games/Related Merchandise",
-                "category": "teenagers",
-                "image": "https://hips.hearstapps.com/hmg-prod/images/most-popular-video-games-of-2022-1642612227.png?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*?height=200&width=200"
-            },
-            {
-                "name": "Cozy Blanket",
-                "category": "caregivers",
-                "image": "https://m.media-amazon.com/images/I/71RRFQziKmL.jpg?height=200&width=200"
-            },
-            {
-                "name": "Scented Candles",
-                "category": "caregivers",
-                "image": "https://candlefy.com/cdn/shop/products/orange-blossom-scented-candle-made-with-natural-coconut-wax-101249.jpg?v=1710035881&width=1214?height=200&width=200"
-            },
-            {
-                "name": "Self-Care Kit",
-                "category": "caregivers",
-                "image": "https://m.media-amazon.com/images/I/81QFVXoO3eL.jpg?height=200&width=200"
-            },
-            {
-                "name": "Books",
-                "category": "caregivers",
-                "image": "https://m.media-amazon.com/images/I/91wS5v7tI7L._AC_UF1000,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Digital Photo Frame",
-                "category": "caregivers",
-                "image": "https://m.media-amazon.com/images/I/718DGGMbhsL._AC_UF894,1000_QL80_.jpg?height=200&width=200"
-            },
-            {
-                "name": "Gift Card",
-                "category": "caregivers",
-                "image": "https://usenosh.com/blog/wp-content/uploads/2023/09/62a0b8dc64636e792c929031_Virtual-Gift-Cards-for-Employees-1-fotor-2023091315356.png?height=200&width=200"
-            },
-            {
-                "name": "Tickets",
-                "category": "caregivers",
-                "image": "https://newenglandmomma.com/wp-content/uploads/2018/08/LEGOLAND-outside.png?height=200&width=200"
-            },
-            {
-                "name": "Travel Mug",
-                "category": "caregivers",
-                "image": "https://fellowproducts.com/cdn/shop/files/Carter-MoveMug-2in1-Sienna_900x.png?v=1708624407?height=200&width=200"
-            },
-            {
-                "name": "Journal",
-                "category": "caregivers",
-                "image": "https://i0.wp.com/www.redital.com/wp-content/uploads/2017/05/bullet-journal-example-1024x768.jpg?resize=1024%2C768&ssl=1?height=200&width=200"
-            }
-
+        const dropOffLocations = [
+            { name: "TBD", address: "Want to be a donation location? Email us hello@thebraveheroes.org!" },
         ];
 
         function renderCatalog(items) {
-            const catalog = document.getElementById('gift-catalog');
+            const catalog = document.getElementById('catalog');
             catalog.innerHTML = '';
             items.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'item';
-                itemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="item-image">
-                    <div class="item-content">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-category">${item.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
-                        <a href="https://thebraveheroes.org/donate" class="donate-button">Donate</a>
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">${item.name}</h3>
+                        <p class="card-category">${item.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</p>
+                        <p class="card-price">$${item.price.toFixed(2)}</p>
+                        <a href="https://givebutter.com/6OtYj5?amount=${item.price}" target="_blank" class="donate-button">Donate This Item</a>
                     </div>
                 `;
-                catalog.appendChild(itemElement);
+                catalog.appendChild(card);
             });
         }
 
@@ -417,6 +366,39 @@
 
         document.getElementById('search').addEventListener('input', filterItems);
         document.getElementById('category-filter').addEventListener('change', filterItems);
+
+        document.getElementById('donate-online').addEventListener('click', () => {
+            window.open('https://givebutter.com/6OtYj5', '_blank');
+        });
+
+        const modal = document.getElementById('locations-modal');
+        const btn = document.getElementById('view-locations');
+        const span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = function() {
+            modal.style.display = 'block';
+            const locationsList = document.getElementById('locations-list');
+            locationsList.innerHTML = '';
+            dropOffLocations.forEach(location => {
+                const locationDiv = document.createElement('div');
+                locationDiv.className = 'location';
+                locationDiv.innerHTML = `
+                    <h4>${location.name}</h4>
+                    <p>${location.address}</p>
+                `;
+                locationsList.appendChild(locationDiv);
+            });
+        }
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
 
         // Initial render
         renderCatalog(giftItems);
